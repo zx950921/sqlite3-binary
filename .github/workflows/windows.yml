@@ -13,7 +13,24 @@ jobs:
     strategy:
       matrix:
         arch: ["amd64_x86","amd64"]
-        link: ["dll","lib"]
+        config: [
+          {
+            link: ["/MD"],
+            file: "sqlite3.dll"
+          },
+          {
+            link: ["/MDd"],
+            file: "sqlite3d.dll"
+          },
+          {
+            link: ["/MT"],
+            file: "sqlite3.lib"
+          },
+          {
+            link: ["/MTd"],
+            file: "sqlite3d.lib"
+          }
+          ]
 
     runs-on: windows-latest
     steps:
@@ -29,7 +46,7 @@ jobs:
 
       - name: build
         working-directory: ./Source
-        run: cl.exe sqlite3.c -link -dll -out:sqlite3.dll
+        run: cl.exe /O1 /O1 ${{ matrix.config.link }} sqlite3.c -out:${{ matrix.config.file }}
 
       - name: check build
         working-directory: ./Source
