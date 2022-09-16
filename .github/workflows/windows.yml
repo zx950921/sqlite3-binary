@@ -12,7 +12,7 @@ jobs:
     name: build_windows
     strategy:
       matrix:
-        arch: ["x86","x64"]
+        arch: ["amd64_x86","amd64"]
         link: ["dll","lib"]
 
     runs-on: windows-latest
@@ -22,6 +22,10 @@ jobs:
 
       - name: unzip file
         run: 7z e source.zip -y -oSource
+
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.arch }}
 
       - name: build
         working-directory: ./Source
