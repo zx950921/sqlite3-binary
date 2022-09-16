@@ -1,0 +1,27 @@
+name: windows
+
+on: workflow_dispatch
+
+env:
+  SOURCE_URL: https://www.sqlite.org/2022/sqlite-amalgamation-3390300.zip
+
+jobs:
+  build_windows:
+
+
+    name: build_windows
+    strategy:
+      matrix:
+        arch: ["x86","x64"]
+        link: ["dll","lib"]
+
+    runs-on: windows-latest
+    steps:
+      - name: download source
+        run: Invoke-WebRequest $SOURCE_URL -O source.zip
+
+      - name: unzip file
+        run: 7z e source.zip -y -oSource
+
+      - name: list file
+        run: ls Source
