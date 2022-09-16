@@ -15,19 +15,19 @@ jobs:
         arch: ["amd64_x86","amd64"]
         config: [
           {
-            link: ["/MD"],
+            link: "/MD",
             file: "sqlite3.dll"
           },
           {
-            link: ["/MDd"],
+            link: "/MDd",
             file: "sqlite3d.dll"
           },
           {
-            link: ["/MT"],
+            link: "/MT",
             file: "sqlite3.lib"
           },
           {
-            link: ["/MTd"],
+            link: "/MTd",
             file: "sqlite3d.lib"
           }
           ]
