@@ -18,7 +18,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: download source
-        run: Invoke-WebRequest $SOURCE_URL -O source.zip
+        run: aria2c.exe $SOURCE_URL -O source.zip
 
       - name: unzip file
         run: 7z e source.zip -y -oSource
