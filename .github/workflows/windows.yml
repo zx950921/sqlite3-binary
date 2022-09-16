@@ -46,7 +46,7 @@ jobs:
 
       - name: build
         working-directory: ./Source
-        run: cl.exe /O1 /O1 ${{ matrix.config.link }} sqlite3.c -out:${{ matrix.config.file }}
+        run: cl.exe /O1 /O2 link ${{ matrix.config.link }} sqlite3.c -out:${{ matrix.config.file }}
 
       - name: check build
         working-directory: ./Source
