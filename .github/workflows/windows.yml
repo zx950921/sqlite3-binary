@@ -25,7 +25,7 @@ jobs:
 
       - name: build
         working-directory: ./Source
-        run: cl sqlite3.c -link -dll -out:sqlite3.dll
+        run: cl.exe sqlite3.c -link -dll -out:sqlite3.dll
 
       - name: check build
         working-directory: ./Source
