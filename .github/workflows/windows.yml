@@ -23,5 +23,10 @@ jobs:
       - name: unzip file
         run: 7z e source.zip -y -oSource
 
-      - name: list file
-        run: ls Source
+      - name: build
+        working-directory: ./Source
+        run: cl sqlite3.c -link -dll -out:sqlite3.dll
+
+      - name: check build
+        working-directory: ./Source
+        run: ls
