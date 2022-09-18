@@ -33,9 +33,25 @@ jobs:
           ls Release
         working-directory: ./build32
 
+      - uses: actions/upload-artifact@v3.1.0
+        with:
+          name: sqlite3_x86
+          path: |
+            ./build32/Release/sqlite3_static.lib
+            ./build32/Release/sqlite3.dll
+
       - name: build x64
         run: |
           cmake .. -A x64
           cmake --build . --target ALL_BUILD --config Release
           ls Release
         working-directory: ./build64
+
+      - uses: actions/upload-artifact@v3.1.0
+        with:
+          name: sqlite3_x64
+          path: |
+            ./build64/Release/sqlite3_static.lib
+            ./build64/Release/sqlite3.dll
+
+
