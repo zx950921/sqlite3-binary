@@ -29,13 +29,13 @@ jobs:
       - name: build x86
         run: |
           cmake .. -A Win32
-          cmake --build . --target ALL_BUILD
-          ls
+          cmake --build . --target ALL_BUILD --config Release
+          ls Release
         working-directory: ./build32
 
       - name: build x64
         run: |
           cmake .. -A x64
-          cmake --build . --target ALL_BUILD
-          ls
+          cmake --build . --target ALL_BUILD --config Release
+          ls Release
         working-directory: ./build64
