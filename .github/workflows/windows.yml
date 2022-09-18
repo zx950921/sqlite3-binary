@@ -7,8 +7,6 @@ env:
 
 jobs:
   build_windows:
-
-
     name: build_windows
     strategy:
       matrix:
@@ -26,14 +24,20 @@ jobs:
         run: aria2c.exe -o src.zip ${{ env.SOURCE_URL }} --check-certificate=false
 
       - name: unzip file
-        run: 7z e src.zip -y -osrc
+        run: |
+          7z e src.zip -y -osrc
+          mkdir build
 
       - uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: ${{ matrix.arch }}
 
       - name: build
-        run: cmake --build build --target all
+        run: |
+          cmake ..
+          cmake --build . --target ALL_BUILD
+        working-directory: ./build
 
       - name: check build
         run: ls
+        working-directory: ./build
