@@ -30,12 +30,12 @@ jobs:
         run: |
           cmake .. -A Win32
           cmake --build . --target ALL_BUILD
-          ls x86
+          ls
         working-directory: ./build32
 
       - name: build x64
         run: |
           cmake .. -A x64
           cmake --build . --target ALL_BUILD
-          ls x64
+          ls
         working-directory: ./build64
