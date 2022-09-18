@@ -10,34 +10,32 @@ jobs:
     name: build_windows
     strategy:
       matrix:
-        arch: ["amd64_x86","amd64"]
+        arch: ["amd64"]
 
     runs-on: windows-latest
     steps:
-
       - name: checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: download source
-        run: aria2c.exe -o src.zip ${{ env.SOURCE_URL }} --check-certificate=false
-
-      - name: unzip file
         run: |
+          aria2c.exe -o src.zip ${{ env.SOURCE_URL }} --check-certificate=false
           7z e src.zip -y -osrc
-          mkdir build
+          mkdir build32
+          mkdir build64
 
-      - uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: ${{ matrix.arch }}
-
-      - name: build
+      - name: build x86
         run: |
-          cmake ..
+          cmake .. -A Win32
           cmake --build . --target ALL_BUILD
-        working-directory: ./build
+          ls x86
+        working-directory: ./build32
 
-      - name: check build
-        run: ls
-        working-directory: ./build
+      - name: build x64
+        run: |
+          cmake .. -A x64
+          cmake --build . --target ALL_BUILD
+          ls x64
+        working-directory: ./build64
