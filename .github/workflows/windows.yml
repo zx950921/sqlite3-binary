@@ -8,9 +8,6 @@ env:
 jobs:
   build_windows:
     name: build_windows
-    strategy:
-      matrix:
-        arch: ["amd64"]
 
     runs-on: windows-latest
     steps:
