@@ -39,7 +39,7 @@ jobs:
           path: |
             ./build32/Release/sqlite3_static.lib
             ./build32/Release/sqlite3.dll
-            ./stc/sqlite3.h
+            ./src/sqlite3.h
 
       - name: build x64
         run: |
@@ -54,6 +54,6 @@ jobs:
           path: |
             ./build64/Release/sqlite3_static.lib
             ./build64/Release/sqlite3.dll
-            ./stc/sqlite3.h
+            ./src/sqlite3.h
 
 
